@@ -3,11 +3,28 @@
     @Date: 04/05/2022
     @Links: https://github.com/madaracelio
 
+    Une fonction permettant de déssiner une étoile
     n: un entier, qui est la dimension
     Exemple: n = 5
-"""
 
-dim = 8
+          *
+         * *
+    * * *   * * *
+      *       *
+    * * *   * * *
+         * *
+          *
+"""   
+import os,sys,inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0,parentdir) 
+
+from WedgeSymbol import InvertedWedgeSymbol, WedgeSymbol
+from SigmaSymbol import InvertedSigma, Sigma
+
+
+dim = 5
 moitie = dim//2
 
 def chapeau(n):
@@ -119,3 +136,43 @@ num = 9
 # chapeau_inverse(num)
 # sigma(num)
 # sigma_inverse(num)
+
+
+line_number = (dim * 2) - 3
+column_number = (dim * 2) - 1
+wedge_dimension = (dim//2) + 1
+sigma_dimension = (dim//2) + 1
+mid = (column_number)//2
+print(mid)
+print(line_number, column_number, wedge_dimension)
+for i in range(line_number):
+    for j in range(column_number):
+        if i == 0: # i arrive est à la première ligne
+            # si on est à la moitié de la colonne de j
+            if j == mid:
+                print("*", end="")
+            else:
+                print(" ", end="")
+        elif i < wedge_dimension:
+            # on prend ce qui est à gauche et à droite par rapport au milieu, jusqu'à la l'extremité gauche et droite
+            if j == mid - i or j == mid + i:
+                print("*", end="")
+            else:
+                print(" ", end="")
+        # Sigma symbol
+            # print("ijw: ", i, j, wedge_dimension)
+        elif i == wedge_dimension:
+            if i == wedge_dimension or i == wedge_dimension + (mid//2): # Premier et dernier ligne pour une barre horizontale
+                print("*", end="")
+            else:
+                if i > wedge_dimension:
+                    if j == wedge_dimension // 2:
+                        print("*", end="")
+                else:
+                    if i == j and i < wedge_dimension // 2:
+                        print("*", end="")
+                    if i == wedge_dimension - j - 1 and i > wedge_dimension //2:
+                        print("*", end="")
+                print(" ", end="")
+        # print("-", end="")
+    print("\r")

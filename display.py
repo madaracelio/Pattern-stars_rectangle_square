@@ -67,8 +67,8 @@ if args.triangle_inv:
     InvertedTriangle.create_inverted_triangle(args.triangle_inv)
     print("inverted triangle with dimension = ", args.triangle_inv)
 if args.wedge:
-    Triangle.create_triangle(args.wedge)
+    WedgeSymbol.create_wedge_symbol(args.wedge)
     print("wedge mathematical symbol with dimension = ", args.wedge)
 if args.wedge_inv:
-    InvertedTriangle.create_inverted_triangle(args.wedge_inv)
+    InvertedWedgeSymbol.create_inverted_wedge_symbol(args.wedge_inv)
     print("inverted wedge mathematical symbol with dimension = ", args.wedge_inv)
